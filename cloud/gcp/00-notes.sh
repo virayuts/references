@@ -39,8 +39,63 @@
 # - Some GCP services allows placing resource in multi region, e.g., Cloud Storage where data will be stored in
 #   redundantly in atleast two region
 
+# GCP Interaction
+# - It offers four main ways to works with GCP
+#   - Cloud Platform Console and Cloud Shell (Web UI)
+#   - Cloud SDK (Command Line Tools)
+#   - Cloud Console Mobile App
+#   - Rest-based API
+
+# Cloud SDK
+# - It includes command line tools for interacting with GCP
+# - It includes, gcloud, gsutil, bq, etc.
+
+# Cloud Shell
+# - It is a temporarty virtual machine with Cloud SDK pre-installed
+
+# GCP API
+# - GCP services offers Rest-based API for interacting with them, e.g., Cloud Console uses these APIs behind the scene
+# - It must be enabled first and it is also associated with daily quotas and rate limits
+# - GCP services and resources also has name in URLs format to work with
+
+# GCP Organization
+# - It is the way that GCP resources are organized
+# - It organized GCP resources in a hierarchical structure
+# - It consists of
+#   - Organization which is at the root
+#   - Folder which is a collection of folder and project
+#   - Project which is a collection of GCP resource
+
+# Google Cloud Identity and Access Management (IAM)
+# - It is used to control who can do what based on the least privilege principle (have only the needed permission)
+# - It consists of three main part
+#   - WHO (what user)
+#       - It can be
+#           - Google account
+#           - Google group
+#           - Service account
+#               - It provide identity for server-to-server interaction in a project
+#               - It is identified by an email address and used cryptographic keys for authentication
+#               - It can also be viewed as a resource
+#           - G-Suite
+#           - Cloud Identity Domain
+#   - WHAT (what needs to be done)
+#       - It is defined by a role which has a set of permissions
+#       - There are three types fo role
+#           - Primitive
+#               - It is broad and affect all resources in the GCP project, e.g., Owner, Editor, Viewer roles
+#           - Pre-defined
+#               - It provide more fine-grained permissions over particular GCP service
+#           - Custom
+#               - It provide customised set of permissions to suite user needs
+#               - It can't be used at a folder level
+#   - WHICH (what resource to operate on)
+
 # Security
-# - GCP encrypts data both at rest and in transit between services automatically
+# - GCP is responsible for lower-level infrastructure security such as hardware, storage and encryption,
+#   network security, etc.
+# - User is responsile for higher-level security such as application security, access management, etc., although GCP
+#   provides tools such as IAM for helping the user
 
 # Pricing
 # - Certain GCP services are billed by the second
@@ -60,3 +115,10 @@
 #   - Allocation Quota
 #       - Limit number of resource that can be allocated in a project, e.g., 5 VPC network in a project
 # - Billing export and report can help view more detailed analysis
+
+# Cloud Launcher (formerly Marketplace)
+# - It is pre-packaged, ready to deploy solutions
+# - It helps with pre-configuring softwares, virtual machines, storage and network settings but it can still be modify
+#   as needed before launch
+# - Once deployed, if the base image of package gets updated, it doesn't affect the already deployed instances and has
+#   to be done manually

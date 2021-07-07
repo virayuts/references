@@ -53,6 +53,9 @@
 # Cloud Shell
 # - It is a temporarty virtual machine with Cloud SDK pre-installed
 
+# Cloud Shell Available Environment Variable
+$DEVSHELL_PROJECT_ID    # Current Project ID
+
 # GCP API
 # - GCP services offers Rest-based API for interacting with them, e.g., Cloud Console uses these APIs behind the scene
 # - It must be enabled first and it is also associated with daily quotas and rate limits
@@ -144,6 +147,7 @@
 # Creating a VM
 # - VM_NAME is a hostname which can be used to connect to within the network
 #   - Its full format is VM_NAME.ZONE_NAME.c.PROJECT_ID.internal
+#   - GCP automatically provides Domain Name Service resolution for internal IP addresses of VM instances
 gcloud compute zones list                   # List all the available zones for compute engine
 gcloud config set compute/zone ZONE_NAME    # Set zone to work with
 gcloud compute instances create VM_NAME     # Creating a VM (many command options exist to tune VM)
@@ -187,7 +191,7 @@ gcloud compute instances create VM_NAME     # Creating a VM (many command option
 #             specification
 
 # Cloud Load Balancing
-# - It is a fully distributed, managed service that helps with distributing incoming traffic from the internet 
+# - It is a fully distributed, fully managed service that helps with distributing incoming traffic from the internet 
 #   to internal back-end services
 # - It provides a single anycast IP address (many machine having same IP address) to front end all the request from
 #   any region
@@ -210,8 +214,85 @@ gcloud compute instances create VM_NAME     # Creating a VM (many command option
 
 # Cloud DNS
 # - It helps translate internet hostnames to IP addresses of applications within GCP
-#   - GCP automatically provides Domain Name Service resolution for internal IP addresses of VM instances
 
 # Cloud CDN (Content Delivery Network)
 # - It helps cache content in Google's edge caches closer to end user
 # - CDN Interconnect allows you to use different CDN
+
+# Cloud Storage
+# - It is a fully managed service for storing large binary object
+# - It consists of buckets where objects are stored within
+#   - Bucket names are globally unique
+#   - Bucket can have different storage class
+#       - Multi Regional
+#           - It is suitable for data that are frequently accessed across region
+#           - It redundantly stored data in atleast two region
+#           - It has low retrieval price and higher storage price
+#       - Regional
+#           - It is suitable for data that are frequently accessed within a region
+#           - It has low retrieval price and high storage price
+#       - Nearline
+#           - It is suitable for data that are accessed at most once a month
+#           - It has high retrieval price and low storage price
+#       - Coldline
+#           - It is suitable for data that are accessed at most once a year
+#           - It has higher retrieval price and lower storage price
+# - Stored object are
+#   - Provided unique key which is in the form of URLs with format gs://BUCKET_NAME/FILE_LOCATION
+#   - Immutable (new version always override old version)
+#       - Object versioning can be turned on to keep track of modification to the object which can then be used 
+#         to restored to an earlier state, etc.
+#   - Manageable with life cycle policy
+#   - Encrypted at rest and in transit via HTTPs
+# - It provides API and command line tool (gsutil) to interact with
+# - It can import data by
+#   - Online Transfer
+#       - Cloud Console or Cloud SDK and its command line tool (gsutil)
+#   - Storage Transfer Service
+#       - It allows transfer of huge amount of data from other cloud provider or from an HTTPs endpoint
+#   - Transfer Appliance
+#       - It allows transfer of huge amount of data by leasing storage appliance, uploads data into it and ship it
+#         to the upload facility
+# - It integrates seamlessly with other GCP services, e.g., importing/exporting tables for Cloud SQL and BigQuery
+
+# Creating Bucket
+# - Its LOCATION_NAME can be US, EU or ASIA
+gsutil mb -l LOCATION_NAME gs://BUCKET_NAME
+
+# Copying Files
+gsutil cp SOURCE DESTINATION
+
+# Modifying Access Control List
+gsutil acl ch -u allUsers:R FILE_LOCATION   # In this case, all user is given read access
+
+# Cloud BigTable
+# - It is a managed NoSQL, wide-column database service
+# - It is ideal for
+#   - Storing data with single lookup key
+#   - Storing large amount of data with low latency (high read/write)
+# - It can be accessed with the open source HBase API providing compatibility with the Hadoop ecosystem
+# - It encrypts data both at rest and in transit
+# - Its data can be
+#   - Read/Write using Application API
+#   - Streamed in using streaming frameworks such as Cloud Dataflow Streaming, Spark Streaming, etc.
+#   - Read/Write through batch processes such as Dataflow, spark, etc.
+
+# Cloud DataStore
+# - It is a fully managed NoSQL, document database service (horizontally scalable)
+# - It provides
+#   - SQL like queries and transaction that can affect multiple document
+
+# Cloud SQL
+# - It is a managed SQL, relational database service (MYSQL and PostgreSQL)
+# - It provides
+#   - Automatic replication set up for read, failover, etc.
+#   - Automatic backups
+#   - Data encryption at rest and in transit within GCP network
+#   - Network Firewall
+# - It integreate seamlessly with internal GCP services and other external tools
+
+# Cloud Spanner
+# - It is a managed relational database service (horizontally scalable)
+# - It provides
+#   - Consistencty at a global scale
+#   - Automatic synchronous replication

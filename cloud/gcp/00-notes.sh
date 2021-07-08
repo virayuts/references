@@ -74,6 +74,12 @@ $DEVSHELL_PROJECT_ID    # Current Project ID
 #   - Folder which is a collection of folder and project
 #   - Project which is a collection of GCP resource
 
+# Viewing Current Active Account
+gcloud auth list
+
+# Viewing Current Active Project
+gcloud config list project
+
 # Google Cloud Identity and Access Management (IAM)
 # - It is used to control who can do what based on the least privilege principle (have only the needed permission)
 # - It consists of three main part
@@ -177,6 +183,47 @@ gcloud container clusters create CLUSTER_NAME
 #     GKE and Kubernetes on-premise
 #   - Maintaining consistent policies across all the cluster
 
+# App Engine
+# - It is a PaaS which manages the hardware and networking infrastructure required to run application code
+# - It provides
+#   - No need to provision and maintain servers
+#   - Scaling application automatically
+#   - Seamlessly integrate with other GCP services
+# - It has two environment
+#   - Standard
+#       - Application runtime is provided by the App Engine
+#       - Application is run in a sandbox independent of hardware, operating system, location of server, etc. but it has
+#         constraint on application like no writing to local file, request time out after 60s, limits on third party
+#         software
+#       - Pricing based on usage with automatic shutdown on no traffic
+#   - Flexible
+#       - Application is run in a container inside a compute engine VM which is managed by App Engine
+#       - It has no constraint on the application
+#       - Pricing based on resource allocation with no automatic shutdown
+
+# App Engine Application
+# - It uses yaml file to specify application configuration
+#   - app.yaml
+#       - It specifies information about the application needs
+
+# Creating App Engine
+gcloud app create --project PROJECT_ID
+
+# Deploying Application
+gcloud app deploy
+
+# Launching Application in Browser
+gcloud app browse
+
+# Cloud Function
+# - It is a single purpose function that is run in respond to events in GCP
+# - It provision resource for executing the function automatically
+# - It can responds to events in
+#   - Cloud Storage
+#   - Cloud Pub/Sub
+#   - HTTP call
+# - Its function is executed in a managed Node.js environment
+
 # Virtual Private Cloud (VPC)
 # - It helps with GCP resources connectivity
 #   - Connect them with each other or to the internet
@@ -265,7 +312,7 @@ gcloud container clusters create CLUSTER_NAME
 # - Stored object are
 #   - Provided unique key which is in the form of URLs with format gs://BUCKET_NAME/FILE_LOCATION
 #   - Immutable (new version always override old version)
-#       - Object versioning can be turned on to keep track of modification to the object which can then be used 
+#       - Object versioning can be turned on to keep track of modification to the object which can then be used
 #         to restored to an earlier state, etc.
 #   - Manageable with life cycle policy
 #   - Encrypted at rest and in transit via HTTPs
@@ -321,3 +368,55 @@ gsutil acl ch -u allUsers:R FILE_LOCATION   # In this case, all user is given re
 # - It provides
 #   - Consistencty at a global scale
 #   - Automatic synchronous replication
+
+# Cloud Endpoints
+# - It is an API management tool
+# - It provides
+#   - Expose and manage consumer of an existing API
+#   - Monitor and logs API usage
+# - It implements features by deploying a proxy in front of the API service
+
+# Apigee Edge
+# - It is an API management tool
+# - It provides
+#   - Monetization of API
+#   - Rate limiting, quotas and analytics on API usage
+
+# Cloud Source Repositories
+# - It provides Git source control repository hosted on GCP
+# - It integrates with IAM to manage access management
+
+# Deployment Manager
+# - It is an infrastructure management service that automates creation and management of GCP resource
+# - It uses a yaml template to describe the required environment
+
+# Creating a Deployment
+gcloud deployment-manager deployments create DEPLOYMENT_NAME
+    --config FILE_NAME.yaml
+
+# Updating a Deployment
+gcloud deployment-manager deployments update DEPLOYMENT_NAME
+    --config FILE_NAME.yaml
+
+# Viewing Deployment
+gcloud deployment-manager deployments list
+
+# Cloud Operation Suite (formerly Stackdriver)
+# - It is a GCP collection of tools for monitoring, logging and diagnostics
+# - It provides
+#   - Monitoring
+#       - It includes platform, system and application metrics
+#       - It can provide uptime/health check of services
+#       - It can set up dashboard and alert on interesting criteria
+#   - Logging
+#       - It includes platform, system and application logs
+#       - It provides ability to view, search, filter and export log
+#       - It can create metric from logs
+#   - Trace
+#       - It can sample latency of application and report per URL statistics
+#   - Error Reporting
+#       - It tracks and group error from application
+#       - It can notify when new error are detected
+#   - Debugger
+#       - It can help debug application in production environment
+#   - Profiler

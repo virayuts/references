@@ -39,6 +39,11 @@
 # - Some GCP services allows placing resource in multi region, e.g., Cloud Storage where data will be stored in
 #   redundantly in atleast two region
 
+# Listing and Setting Default Zone
+# - Many GCP resources utilizes VM underneath, thus, these options will specify from which zone the VM are created from
+gcloud compute zones list                   # List all the available zones for compute engine
+gcloud config set compute/zone ZONE_NAME    # Set zone to work with
+
 # GCP Interaction
 # - It offers four main ways to works with GCP
 #   - Cloud Platform Console and Cloud Shell (Web UI)
@@ -148,9 +153,29 @@ $DEVSHELL_PROJECT_ID    # Current Project ID
 # - VM_NAME is a hostname which can be used to connect to within the network
 #   - Its full format is VM_NAME.ZONE_NAME.c.PROJECT_ID.internal
 #   - GCP automatically provides Domain Name Service resolution for internal IP addresses of VM instances
-gcloud compute zones list                   # List all the available zones for compute engine
-gcloud config set compute/zone ZONE_NAME    # Set zone to work with
-gcloud compute instances create VM_NAME     # Creating a VM (many command options exist to tune VM)
+# - Many command options exist to tune VM
+gcloud compute instances create VM_NAME
+
+# Google Kubernetes Engine (GKE)
+# - It is a managed Kubernetes service
+# - It provides
+#   - Auto node repair
+#   - Auto upgrade Kubernetes
+# - It utilizes GCP services
+#   - VM are created from compute engine
+#   - Load balancer service of Kubernetes that exposes service to the internet utilizes
+#     Cloud Load Balancing (TCP/UDP Load Balancer)
+
+# Creating a Cluster
+# - Many command options exist to tune cluster
+gcloud container clusters create CLUSTER_NAME
+
+# Anthos
+# - It is a hybrid and multi cloud systems and services management
+# - It provides
+#   - Single control plane for managing services running on both on-premise and cloud, e.g.,
+#     GKE and Kubernetes on-premise
+#   - Maintaining consistent policies across all the cluster
 
 # Virtual Private Cloud (VPC)
 # - It helps with GCP resources connectivity

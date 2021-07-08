@@ -369,6 +369,52 @@ gsutil acl ch -u allUsers:R FILE_LOCATION   # In this case, all user is given re
 #   - Consistencty at a global scale
 #   - Automatic synchronous replication
 
+# Cloud Dataproc
+# - It is a managed service for Hadoop and its ecosystem, i.e., Spark, Hive, Pig
+# - It integrate seamlessly with GCP services
+#   - It utilizes compute engine VM for its infrastructure
+#   - It can be monitored with Cloud Operation Suite's tools
+
+# Cloud Dataflow
+# - It is a fully managed service for data processing, i.e., ETL (Extract Transform Load) pipeline
+# - It supports both batch, streaming processing
+# - It automates the infrastruction needed to process
+# - It integrate seamlessly with GCP services that act like SOURCE and SINK, e.g., Cloud Storage, Cloud Pub/Sub,
+#   BigQuery, BigTable, etc.
+
+# BigQuery
+# - It is a fully managed data warehouse service
+# - It is suitable for interactive analysis of massive datasets using SQL syntax
+# - There is two type of Pricing
+#   - Pay for storage (discount for long-term storage)
+#   - Pay for queries
+
+# Running a Query
+bq query "QUERY"
+
+# Cloud Pub/Sub
+# - It is a messaging service
+# - It guarantee atleast once delivery
+# - Its component includes
+#   - Publisher
+#       - It push messages
+#   - Subscriber
+#       - It subscribe to messages in a topic
+#   - Topic
+#       - It is where messages reside
+# - Its messages can be either
+#       - Push
+#           - Subscriber gets notified for new message
+#       - Pull
+#           - Subscriber check for new message at interval
+
+# Cloud Datalab
+# - It offer interactive data exploration based Jupyter
+# - It integrate seamlessly with GCP services
+#   - Compute Engine VM is used to run the application
+#   - BigQuery, Cloud Storage, etc. for accessing data
+# - Pricing is pay only for the resource used
+
 # Cloud Endpoints
 # - It is an API management tool
 # - It provides

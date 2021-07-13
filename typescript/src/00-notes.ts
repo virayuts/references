@@ -2,7 +2,7 @@
  * TypeScript Language
  * - It is a programming language that is a superset of JavaScript
  * - It provides
- *      - Static Typing to variables, parameters, return types, etc.
+ *      - Static typing to variables, parameters, return types, etc.
  *      - Organization of codes through class, interface, namespace, module, etc.
  *      - Tooling for static type analysis, detecting errors, unused data, unreachable code, debugging, etc.
  */
@@ -39,3 +39,91 @@ let c: boolean[] = [ true, false ];
 let d = 20;
 let e = 'hello';
 let f = [true, false];
+
+// Automatic Type Inference on const is Literal Type
+const g = 20;                   // (20)
+const h = Symbol('some');       // (unique symbol)
+
+/**
+ * Boolean Type
+ */
+
+let b1: boolean = true;
+let b2: boolean = false;
+
+/**
+ * Number Type
+ * - It includes integers, floats, Infinity, NaN
+ */
+
+let n1: number = 20;
+let n2: number = 10.32;
+let n3: number = Infinity * 20;
+
+// Separator can be used to separate long number in both type and value position
+let n4: 1_000 = 1_000;
+
+/**
+ * BigInt Type
+ * - It represents large integers
+ */
+
+let bi1: bigint = 10n;
+let bi2: bigint = 1_000n;
+
+/**
+ * String Type
+ */
+
+let s1: string = 'hello';
+let s2: string = "world";
+
+// Interpolated String
+let s3: string = `${s1}, ${s2}`;    // hello, world
+
+/**
+ * Symbol Type
+ * - It is an alternative to string keys in object
+ * - Literal type for symbol is unique symbol
+ *      - It can only be assigned to const
+ *      - It compares equal only to itself
+ */
+
+let sym1: symbol = Symbol('some');
+const sym2: unique symbol = Symbol('some');
+
+/**
+ * Any Type
+ * - It is a type that can be anything and can do anything similar to JavaScript
+ * - It must be avoided or used as a last resort
+ */
+
+let a1: any = 20;
+let a2: any = 'hello';
+let a3 = a1 + a2;           // 20hello (any)
+
+/**
+ * Unknown Type
+ * - It is a type that can be anything but it must be refined (checking what type it is) before use
+ *      - Although, it support simple operation with operator like comparison operator, logical operator
+ * - It will never be inferred by TypeScript
+ */
+
+let u1: unknown = 30;
+
+let uops1 = u1 == '30';     // true (boolean)
+let uops2 = u1 !== 30;      // false (boolean)
+
+// Refinement can be done by typeof and instanceof operator
+if (typeof u1 === 'number') {
+    let uops3 = u1 + 10;    // 40 (number)
+    console.log(uops3);
+}
+
+/**
+ * Literal Type
+ * - It is a type that uses a value as its type
+ */
+
+let l1: true = true;
+let l2: 10 = 10;

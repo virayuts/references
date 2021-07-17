@@ -11,12 +11,6 @@
 # - It has no concept of file extension
 # - Everything in linux can be considered as a file ,e.g., devices, etc.
 
-# Home Directory
-# - Each user is given a directory in the file system where they are alllowed to write files
-# - It usually is the current working directory when the user is first logged in
-# - It usually contains account and applications configuration files
-# - It is denoted by `~`
-
 # File Name
 # - File name beginning with `.` is hidden
 # - File name is case sensitive
@@ -34,6 +28,12 @@
 #           - `.`   (current working directory) (implied by default and can be omitted)
 #           - `..`  (current working directory's parent directory)
 #       - e.g., ../usr, ./bin, bin
+
+# Home Directory
+# - Each user is given a directory in the file system where they are alllowed to write files
+# - It usually is the current working directory when the user is first logged in
+# - It usually contains account and applications configuration files
+# - It is denoted by `~`
 
 ####################
 # File Structure
@@ -57,10 +57,17 @@
 # - `/usr`          (programs and files for regular user)
 # - `/var`          (data that are likely to change a lot)
 
-# Configuration File
+# System Configuration File
 # - `/etc/crontab`  (defines automated jobs)
 # - `/etc/fstab`    (defines storage devices and their mount points)
 # - `/etc/passwd`   (defines all system's user account)
+
+# User Program File
+# - `/usr/bin`      (programs installed by linux distribution)
+# - `/usr/lib`      (shared libraries files)
+# - `/usr/local`    (programs installed additionally)
+# - `/usr/sbin`     (system administrations programs)
+# - `/usr/share`    (shared data of the programs and its documentation files)
 
 ####################
 # File Link

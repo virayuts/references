@@ -3,4 +3,4 @@
 ####################
 
 # Linux
-# - It is the name of Operating System's kernel
+# - It is the name of the operating system's kernel

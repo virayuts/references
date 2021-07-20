@@ -35,8 +35,12 @@
 # - It usually contains account and applications configuration files
 # - It is denoted by `~`
 
+# Symbolic Link
+# - It is a way to provide multiple names for a file
+# - It will reference the original file when used
+
 ####################
-# File Structure
+# File System Structure
 ####################
 
 # File System Structure
@@ -70,16 +74,24 @@
 # - `/usr/share`    (shared data of the programs and its documentation files)
 
 ####################
-# File Link
-####################
-
-# Symbolic Link
-# - It is a way to provide multiple names for a file
-# - It will reference the original file when used
-
-####################
 # File Command
 ####################
+
+# Wildcard
+# - It is special characters used to create pattern for selecting groups of file names
+# - It can be used with any command that accepts file name as arguments
+# - It includes
+#   - `*`               (matches any characters)
+#   - `?`               (matches any single character)
+#   - `[char]`          (matches any single character belonging to the set)
+#   - `[!char]`         (matches any single character not belonging to the set)
+#   - `[[:class:]]`     (matches any single character belonging to the class set)
+#       - `[:alnum:]`   (matches alphanumeric character)
+#       - `[:alpha:]`   (matches alphabetic character)
+#       - `[:digit:]`   (matches numeric character)
+#       - `[:lower:]`   (matches lowercase character)
+#       - `[:upper:]`   (matches uppercase character)
+# - It still supports legacy character range notation, e.g., `[A-Z]`, but it should be avoided as results may vary
 
 # Displaying Current Working Directory
 pwd
@@ -87,8 +99,8 @@ pwd
 # Changing Current Working Directory
 # - Omitting path name changes to home directory
 # - Additional character can be used as path name as well
-#   - `-`           (changes to previous working directory)
-#   - `~user_name`  (changes to the specified user's home directory)
+#   - `-`               (changes to previous working directory)
+#   - `~user_name`      (changes to the specified user's home directory)
 cd PATH_NAME
 
 # Displaying Directory's Content
@@ -140,3 +152,33 @@ file FILE_NAME
 #   - `n`       (search for next occurence of previous search)
 #   - `q`       (quit viewing)
 less FILE_NAME
+
+# Creating Directory
+# - It supports creating multiple directory with names separated by space
+mkdir DIRECTORY_NAME
+
+# Copying Files and Directories
+# - It has two form
+#   - Copying single file/directory to destination file/directory
+#   - Copying multiple file/directory to destination directory
+#       - Multiple file names are separated by space in SOURCE
+#       - Destination directory must already exist
+cp SOURCE DESTINATION
+    -a                  # copy attributes (ownership and permission) as well
+    -i                  # prompt confirmation for overwriting files
+    -r                  # recursively copy directories and their contents
+    -u                  # copies only files that either don't exist or are newer than in the destination directory
+    -v                  # display verbose informative messages
+
+# Moving Files
+# - It has usage similiar to `cp`
+mv SOURCE DESTINATION
+
+# Removing Files and Directories
+# - Deleting a file in linux permanently delete it from the system
+# - It supports deleting multiple file/directory with names separated by space
+rm ITEM_NAME
+    -i                  # prompt confirmation for deleting files
+    -r                  # recursively delete directories and their contents
+    -f                  # ignore nonexistent files and do not prompt
+    -v                  # display verbose informative messages
